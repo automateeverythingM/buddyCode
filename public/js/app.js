@@ -86216,7 +86216,7 @@ function Navigation(_ref) {
       auth = _ref$auth === void 0 ? false : _ref$auth;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"], {
     collapseOnSelect: true,
-    expand: "lg",
+    expand: "sm",
     bg: "dark",
     variant: "dark"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"].Brand, {
