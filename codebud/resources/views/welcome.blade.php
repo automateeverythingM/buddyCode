@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -35,6 +36,7 @@
                     @endif
                 </div>
             @endif
+        <div class="text-white display-4" id="root">Hello how are you</div>
         </div>
     </body>
 </html>
