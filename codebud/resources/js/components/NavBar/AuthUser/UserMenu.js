@@ -1,13 +1,23 @@
 import React from "react";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { MdPersonOutline } from "react-icons/md";
-import classes from "./styles.module.css";
+import Avatar from "../../UI/Avatar";
 export default function UserMenu() {
     return (
         <Nav>
-            <div className={classes.wrapper}>
-                <MdPersonOutline />
-                <NavDropdown title="user Menu" id="collasible-nav-dropdown">
+            <div className="d-flex align-items-center text-white">
+                <NavDropdown
+                    className="mr-2"
+                    title={
+                        <Avatar
+                            src="https://picsum.photos/50"
+                            size="2em"
+                            title="User"
+                        />
+                    }
+                    alignRight
+                    id="nav-dropdown"
+                >
                     <NavDropdown.Item href="#action/3.1">
                         Profile
                     </NavDropdown.Item>
