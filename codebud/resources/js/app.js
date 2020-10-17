@@ -14,3 +14,4 @@ require("./bootstrap");
 
 require("./components/Example");
 require("./components/NavBar/Navigation");
+require("./components/HomePageContent/HomePage");

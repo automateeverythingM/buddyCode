@@ -31,6 +31,9 @@ export default function UserMenu() {
                     <NavDropdown.Item href="#action/3.4">
                         Settings
                     </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.5">
+                        Logout
+                    </NavDropdown.Item>
                 </NavDropdown>
             </div>
         </Nav>

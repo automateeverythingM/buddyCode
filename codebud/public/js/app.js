@@ -85991,6 +85991,8 @@ __webpack_require__(/*! ./components/Example */ "./resources/js/components/Examp
 
 __webpack_require__(/*! ./components/NavBar/Navigation */ "./resources/js/components/NavBar/Navigation.js");
 
+__webpack_require__(/*! ./components/HomePageContent/HomePage */ "./resources/js/components/HomePageContent/HomePage.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -86078,6 +86080,44 @@ if (document.getElementById('example')) {
 
 /***/ }),
 
+/***/ "./resources/js/components/HomePageContent/HomePage.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/HomePageContent/HomePage.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return HomePage; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function HomePage() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Jumbotron"], {
+    bg: "danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "display-4 "
+  }, "Find persons that well help you grow."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "text-muted mb-0"
+  }, "Same lvl of knowledge"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "text-muted my-0"
+  }, "Project to practice on and colaborate on"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "text-muted my-0"
+  }, "Practice ask question and find out together"));
+}
+
+if (document.getElementById("root")) {
+  Object(react_dom__WEBPACK_IMPORTED_MODULE_2__["render"])( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(HomePage, null), document.getElementById("root"));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/NavBar/AuthUser/UserMenu.js":
 /*!*************************************************************!*\
   !*** ./resources/js/components/NavBar/AuthUser/UserMenu.js ***!
@@ -86117,7 +86157,9 @@ function UserMenu() {
     href: "#action/3.3"
   }, "Projects"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NavDropdown"].Divider, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NavDropdown"].Item, {
     href: "#action/3.4"
-  }, "Settings"))));
+  }, "Settings"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NavDropdown"].Item, {
+    href: "#action/3.5"
+  }, "Logout"))));
 }
 
 /***/ }),
