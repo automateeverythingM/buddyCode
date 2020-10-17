@@ -5,7 +5,7 @@ export default function HomePage() {
     return (
         <Jumbotron bg={"danger"}>
             <h1 className="display-4 ">
-                Find persons that well help you grow.
+                Find persons that will help you grow.
             </h1>
             <p className="text-muted mb-0">Same lvl of knowledge</p>
             <p className="text-muted my-0">

@@ -11,6 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -83,11 +85,17 @@
             </div>
         </nav>
 
-        <div id="navigation"></div>
 
-        <main class="py-4">
+        <main class="py-4 container">
             @yield('content')
         </main>
+
+        <footer class="bg-dark">
+            <div class="container footer d-inline-block text-white">
+                <i class="fab fa-github mr-1"></i>
+                © 2020 Code Buddy, Inc.
+            </div>
+        </footer>
     </div>
 </body>
 </html>
