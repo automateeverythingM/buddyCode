@@ -10,6 +10,8 @@
         <p class="text-muted my-0">We made this for us</p>
         <p class="text-muted my-0">Faster advancing your knowledge.</p>
         <p class="text-muted mb-0">Practice, ask question and find out together</p>
+        <input type="text" id="MainSearch">
+        <input type="text" id="tags" data-role="tagsinput" >
     </article>
     <article class="col-sm-12 col-md-6">
         <div style="width:400px; height: 400px;" class="font-weight-bold display-2 bg-dark rounded-circle d-flex align-items-center justify-content-center text-white">
