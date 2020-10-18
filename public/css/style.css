@@ -39,7 +39,7 @@
     margin-right: 2px;
     background-color: #ddd;
     border-radius: 10%;
-    color: green;
+    color: #333;
   }
   .bootstrap-tagsinput .tag [data-role="remove"] {
     margin-left: 8px;
