@@ -73,6 +73,15 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="skills" class="col-md-4 col-form-label text-md-right">{{ __('Skills') }}</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="" name="skills[]" data-role="tagsinput" placeholder="Add tags" />
+                            </div>
+                            
+                        </div>
+
+
+                        <div class="form-group row">
                             <label for="about" class="col-md-4 col-form-label text-md-right">{{ __('Something about yourself') }}</label>
 
                             <div class="col-md-6">

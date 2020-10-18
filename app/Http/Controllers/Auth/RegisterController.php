@@ -70,6 +70,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'expertise'=> implode(',',$data['check']),
+            'skills'=> implode(',',$data['skills']),
             'about' => $data['about'],
             'password' => Hash::make($data['password']),
         ]);
