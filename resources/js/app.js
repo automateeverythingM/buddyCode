@@ -5,10 +5,11 @@
  */
 
 require("./bootstrap");
-import $ from "jquery";
-window.$ = window.jQuery = $;
+window._ = require("lodash");
+window.$ = window.jQuery = require("jquery");
+window.axios = require("axios");
 import "jquery-ui/ui/widgets/autocomplete";
-import "bootstrap-tag-input";
+import "bootstrap-tag-input/dist/js";
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -19,36 +20,35 @@ import "bootstrap-tag-input";
 // require("./components/NavBar/Navigation");
 // require("./components/HomePageContent/HomePage");
 
-var availableTags = [
-    "ActionScript",
-    "AppleScript",
-    "Asp",
-    "BASIC",
-    "C",
-    "C++",
-    "Clojure",
-    "COBOL",
-    "ColdFusion",
-    "Erlang",
-    "Fortran",
-    "Groovy",
-    "Haskell",
-    "Java",
-    "JavaScript",
-    "Lisp",
-    "Perl",
-    "PHP",
-    "Python",
-    "Ruby",
-    "Scala",
-    "Scheme"
-];
-$(document).ready(function() {
+(function() {
+    var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+    ];
     $("#MainSearch").autocomplete({
         source: availableTags,
         delay: 200,
         minLength: 2
     });
     $("#MainSearch").val("hello");
-});
-
+})();

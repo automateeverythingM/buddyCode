@@ -40170,12 +40170,10 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var jquery_ui_ui_widgets_autocomplete__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery-ui/ui/widgets/autocomplete */ "./node_modules/jquery-ui/ui/widgets/autocomplete.js");
-/* harmony import */ var jquery_ui_ui_widgets_autocomplete__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_ui_widgets_autocomplete__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var bootstrap_tag_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap-tag-input */ "./node_modules/bootstrap-tag-input/dist/js/index.js");
-/* harmony import */ var bootstrap_tag_input__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_tag_input__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jquery_ui_ui_widgets_autocomplete__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery-ui/ui/widgets/autocomplete */ "./node_modules/jquery-ui/ui/widgets/autocomplete.js");
+/* harmony import */ var jquery_ui_ui_widgets_autocomplete__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_ui_widgets_autocomplete__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var bootstrap_tag_input_dist_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap-tag-input/dist/js */ "./node_modules/bootstrap-tag-input/dist/js/index.js");
+/* harmony import */ var bootstrap_tag_input_dist_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap_tag_input_dist_js__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -40183,8 +40181,9 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-
-window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
 /**
@@ -40196,15 +40195,15 @@ window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 // require("./components/NavBar/Navigation");
 // require("./components/HomePageContent/HomePage");
 
-var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"];
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#MainSearch").autocomplete({
+(function () {
+  var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"];
+  $("#MainSearch").autocomplete({
     source: availableTags,
     delay: 200,
     minLength: 2
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#MainSearch").val("hello");
-});
+  $("#MainSearch").val("hello");
+})();
 
 /***/ }),
 
