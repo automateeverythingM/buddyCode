@@ -10,8 +10,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/mine.js') }}" defer></script>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -34,10 +37,10 @@
             <div class="collapse navbar-collapse" id="responsive-navbar-nav">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Explore</a>
+                        <a class="nav-link" href="/explore">Explore</a>
                     </li>
                 </ul>
                  @guest
@@ -85,11 +88,21 @@
             </div>
         </nav>
 
-        <div id="navigation"></div>
 
-        <main class="py-4">
+        <main class="py-4 container">
             @yield('content')
         </main>
+
+        <footer class="bg-dark">
+            <div class="container footer d-inline-block text-white">
+                <i class="fab fa-github mr-1"></i>
+                © 2020 Code Buddy, Inc.
+            </div>
+        </footer>
     </div>
+
+    
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>
