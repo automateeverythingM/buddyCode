@@ -26,7 +26,7 @@
 
         
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Code Buddy</a>
+            <a class="navbar-brand" href="/">Code Buddy</a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#responsive-navbar-nav" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
