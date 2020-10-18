@@ -85,7 +85,7 @@
                             <label for="about" class="col-md-4 col-form-label text-md-right">{{ __('Something about yourself') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="about" class="block mt-1 w-full border" rows="8" style="width: 100%" type="text" name="about" :value="old('about')" required autofocus autocomplete="about"></textarea>
+                                <textarea id="about" class="form-control block mt-1 w-full border" rows="8" style="width: 100%" type="text" name="about" :value="old('about')" required autofocus autocomplete="about"></textarea>
                             </div>
                         </div>
 
