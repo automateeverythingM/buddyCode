@@ -13,6 +13,7 @@ const mix = require("laravel-mix");
 
 mix.disableNotifications();
 mix.browserSync("localhost:8000");
+mix.js("resources/js/register.js", "public/js");
 mix.react("resources/js/app.js", "public/js").sass(
     "resources/sass/app.scss",
     "public/css"

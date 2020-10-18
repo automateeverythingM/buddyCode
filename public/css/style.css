@@ -36,7 +36,7 @@
     box-shadow: none;
 }
 .bootstrap-tagsinput .tag {
-    margin-right: 0.2em;
+    margin: 0.5rem 0.2rem 0.5em 0;
     padding: 0.2em 0.5em;
     background-color: #ddd;
     border-radius: 0.2em;

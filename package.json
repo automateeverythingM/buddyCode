@@ -30,6 +30,7 @@
     "dependencies": {
         "bootstrap-tag-input": "^1.0.1",
         "jquery-ui": "^1.12.1",
+        "jquery-validation": "^1.19.2",
         "nanoid": "^3.1.12",
         "node-sass": "^4.14.1",
         "react-bootstrap": "^1.3.0",
