@@ -11,7 +11,6 @@ window.axios = require("axios");
 import "jquery-ui/ui/widgets/autocomplete";
 import "bootstrap-tag-input/dist/js";
 import "jquery-validation";
-import { min } from "lodash";
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application

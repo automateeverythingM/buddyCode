@@ -46,3 +46,19 @@
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
+
+.notification-icon {
+    position: relative;
+    font-size: 2em;
+}
+.notification-icon > span {
+    position: absolute;
+    right: -0.5em;
+    font-size: 0.3em;
+}
+
+.position-dropdown {
+    top: 100%;
+    right: 0;
+    left: auto;
+}

@@ -15,6 +15,7 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -59,7 +60,24 @@
 
                 </div>
                 @else
+
                 <div class="navbar-nav">
+                    <div class="nav-item dropdown ">
+                        <a class="nav-link " href="#" href="#" id="dropdownId" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="notification-icon fa fa-envelope">
+                                <span class="badge badge-danger">11</span>
+                            </i>
+
+                        </a>
+
+                        <div class="dropdown-menu position-dropdown" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">message from user djole</a>
+                            <a class="dropdown-item" href="#">get promo code</a>
+                            <a class="dropdown-item" href="#">you are called to team</a>
+                        </div>
+                    </div>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                             role="button" aria-haspopup="true" aria-expanded="false">
@@ -71,7 +89,7 @@
 
                         </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <div class="dropdown-menu position-dropdown" aria-labelledby="dropdownId">
                             <a class="dropdown-item" href="/profile">Profile</a>
                             <a class="dropdown-item" href="#">Messages</a>
                             <a class="dropdown-item" href="#">Projects</a>
