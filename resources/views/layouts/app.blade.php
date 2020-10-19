@@ -77,7 +77,7 @@
                             <a class="dropdown-item" href="#">Projects</a>
                             <a class="dropdown-item" href="#">Settings</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="dropdown-item" href="{{ route('logout') }}"
                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
@@ -93,7 +93,7 @@
         </nav>
 
 
-        <main class="py-4 container">
+        <main class="py-4 container-fluid w-75 main-container">
             @yield('content')
         </main>
 

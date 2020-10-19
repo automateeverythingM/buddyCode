@@ -3,3 +3,46 @@
     color: red;
     padding-left: 0.3em;
 }
+#profile span {
+    cursor: default;
+}
+.border-drag {
+    border-right: 3px solid #0d63a5;
+}
+
+.word-wrap {
+    word-break: break-word;
+}
+
+.margin-r-b {
+    margin-right: 1%;
+    margin-bottom: 0.5em;
+}
+
+.w-45 {
+    width: 49%;
+}
+
+.language-ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.language-ul li::before {
+    content: "";
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: end;
+    justify-content: end;
+    background-color: darkred;
+    width: 0.5em;
+    height: 0.5em;
+    margin-right: 0.5em;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}

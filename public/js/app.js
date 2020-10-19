@@ -41869,56 +41869,59 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 (function () {
   var register = $("#register").on("submit", function (event) {
-    event.preventDefault();
-    $("#register").validate({
-      rules: {
-        name: {
-          required: true
+    var register = $("#register");
+
+    if (register.validate().checkForm()) {
+      event.preventDefault();
+      register.validate({
+        rules: {
+          name: {
+            required: true
+          },
+          username: {
+            required: true,
+            min: "5"
+          },
+          email: {
+            required: true,
+            email: true
+          },
+          about: {
+            required: true
+          },
+          password: {
+            required: true
+          },
+          password_confirmation: {
+            required: true,
+            equalTo: "#password"
+          }
         },
-        username: {
-          required: true,
-          min: "5"
-        },
-        email: {
-          required: true,
-          email: true
-        },
-        about: {
-          required: true
-        },
-        password: {
-          required: true
-        },
-        password_confirmation: {
-          required: true,
-          equalTo: "#password"
+        messages: {
+          name: {
+            required: "Name is required"
+          },
+          username: {
+            required: "Username is required",
+            min: "Username must be at least 5 characters"
+          },
+          email: {
+            required: "Email is required",
+            email: "Enter valid email address"
+          },
+          about: {
+            required: "About field is required to fill"
+          },
+          password: {
+            required: "Password is required"
+          },
+          password_confirmation: {
+            required: "Confirm your password",
+            equalTo: "Password don`t match"
+          }
         }
-      },
-      messages: {
-        name: {
-          required: "Name is required"
-        },
-        username: {
-          required: "Username is required",
-          min: "Username must be at least 5 characters"
-        },
-        email: {
-          required: "Email is required",
-          email: "Enter valid email address"
-        },
-        about: {
-          required: "About field is required to fill"
-        },
-        password: {
-          required: "Password is required"
-        },
-        password_confirmation: {
-          required: "Confirm your password",
-          equalTo: "Password don`t match"
-        }
-      }
-    });
-    event.preventDefault();
+      });
+    }
   });
 })();
 

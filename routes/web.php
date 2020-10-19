@@ -18,12 +18,10 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
+Route::get('/', function () {
+    return view('home');
+});
+// Route::get('/', 'App\Http\Controllers\HomeController@index');
 
 Route::get('/profile', [PageController::class, 'profile']);
-
 Auth::routes();
-
-Route::get('/', [HomeController::class , 'home']);
