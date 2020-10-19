@@ -10,6 +10,8 @@ window.$ = window.jQuery = require("jquery");
 window.axios = require("axios");
 import "jquery-ui/ui/widgets/autocomplete";
 import "bootstrap-tag-input/dist/js";
+import "jquery-validation";
+import { min } from "lodash";
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -21,34 +23,57 @@ import "bootstrap-tag-input/dist/js";
 // require("./components/HomePageContent/HomePage");
 
 (function() {
-    var availableTags = [
-        "ActionScript",
-        "AppleScript",
-        "Asp",
-        "BASIC",
-        "C",
-        "C++",
-        "Clojure",
-        "COBOL",
-        "ColdFusion",
-        "Erlang",
-        "Fortran",
-        "Groovy",
-        "Haskell",
-        "Java",
-        "JavaScript",
-        "Lisp",
-        "Perl",
-        "PHP",
-        "Python",
-        "Ruby",
-        "Scala",
-        "Scheme"
-    ];
-    $("#MainSearch").autocomplete({
-        source: availableTags,
-        delay: 200,
-        minLength: 2
+    var register = $("#register").on("submit", function(event) {
+        event.preventDefault();
+
+        $("#register").validate({
+            rules: {
+                name: {
+                    required: true
+                },
+                username: {
+                    required: true,
+                    min: "5"
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                about: {
+                    required: true
+                },
+                password: {
+                    required: true
+                },
+                password_confirmation: {
+                    required: true,
+                    equalTo: "#password"
+                }
+            },
+            messages: {
+                name: {
+                    required: "Name is required"
+                },
+                username: {
+                    required: "Username is required",
+                    min: "Username must be at least 5 characters"
+                },
+                email: {
+                    required: "Email is required",
+                    email: "Enter valid email address"
+                },
+                about: {
+                    required: "About field is required to fill"
+                },
+                password: {
+                    required: "Password is required"
+                },
+                password_confirmation: {
+                    required: "Confirm your password",
+                    equalTo: "Password don`t match"
+                }
+            }
+        });
+        event.preventDefault();
     });
-    $("#MainSearch").val("hello");
 })();
