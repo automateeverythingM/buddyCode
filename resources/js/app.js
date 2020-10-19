@@ -26,7 +26,6 @@ import { min } from "lodash";
     var register = $("#register").on("submit", function(event) {
         const register = $("#register");
         if (register.validate().checkForm()) {
-            event.preventDefault();
             register.validate({
                 rules: {
                     name: {

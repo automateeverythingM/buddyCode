@@ -41872,7 +41872,6 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
     var register = $("#register");
 
     if (register.validate().checkForm()) {
-      event.preventDefault();
       register.validate({
         rules: {
           name: {
