@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -41842,6 +41842,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_tag_input_dist_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap_tag_input_dist_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var jquery_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery-validation */ "./node_modules/jquery-validation/dist/jquery.validate.js");
 /* harmony import */ var jquery_validation__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery_validation__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -41852,6 +41854,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
 
 
 
@@ -41873,10 +41876,12 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           required: true
         },
         username: {
-          required: true
+          required: true,
+          min: "5"
         },
         email: {
-          required: true
+          required: true,
+          email: true
         },
         about: {
           required: true
@@ -41885,7 +41890,8 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           required: true
         },
         password_confirmation: {
-          required: true
+          required: true,
+          equalTo: "#password"
         }
       },
       messages: {
@@ -41893,10 +41899,12 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           required: "Name is required"
         },
         username: {
-          required: "Username is required"
+          required: "Username is required",
+          min: "Username must be at least 5 characters"
         },
         email: {
-          required: "Email is required"
+          required: "Email is required",
+          email: "Enter valid email address"
         },
         about: {
           required: "About field is required to fill"
@@ -41905,10 +41913,12 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           required: "Password is required"
         },
         password_confirmation: {
-          required: "Confirm your password"
+          required: "Confirm your password",
+          equalTo: "Password don`t match"
         }
       }
     });
+    event.preventDefault();
   });
 })();
 
@@ -41959,26 +41969,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/***/ 1:
+/*!***********************************!*\
+  !*** multi ./resources/js/app.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Marko\Desktop\codeBuddy\codebud\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Marko\Desktop\codeBuddy\codebud\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\Marko\Desktop\codeBuddy\codebud\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

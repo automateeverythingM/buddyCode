@@ -66,7 +66,7 @@
                             <div class="col-md-6 mt-2">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="check[]" id="inlineRadio1"
-                                        value="entry">
+                                        value="entry" checked>
                                     <label class="form-check-label" for="inlineRadio1">Entry level</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -133,7 +133,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" onsubmit="(e)=> e.preventDefault()">
                                     {{ __('Register') }}
                                 </button>
                             </div>
