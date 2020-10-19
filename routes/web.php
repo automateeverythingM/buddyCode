@@ -1,7 +1,12 @@
 <?php
 
+
+use App\Http\Controllers\PageController;
+
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +21,8 @@ use App\Http\Controllers\HomeController;
 // Route::get('/', function () {
 //     return view('home');
 // });
+
+Route::get('/profile', [PageController::class, 'profile']);
 
 Auth::routes();
 

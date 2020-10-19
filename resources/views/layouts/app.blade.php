@@ -72,7 +72,7 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="/profile">Profile</a>
                             <a class="dropdown-item" href="#">Messages</a>
                             <a class="dropdown-item" href="#">Projects</a>
                             <a class="dropdown-item" href="#">Settings</a>
@@ -98,10 +98,10 @@
         </main>
 
         <footer class="bg-dark">
-            <div class="container footer d-inline-block text-white">
+            {{-- <div class="container footer d-inline-block text-white">
                 <i class="fab fa-github mr-1"></i>
                 © 2020 Code Buddy, Inc.
-            </div>
+            </div> --}}
         </footer>
     </div>
 
