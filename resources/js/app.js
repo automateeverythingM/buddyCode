@@ -20,6 +20,7 @@ import "jquery-validation";
 // require("./components/Example");
 // require("./components/NavBar/Navigation");
 // require("./components/HomePageContent/HomePage");
+require("./components/SearchAutoCompleteStyledComp/SeaechAppHolder");
 
 (function() {
     var register = $("#register").on("submit", function(event) {
