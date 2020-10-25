@@ -25,7 +25,7 @@
             <h4>About:</h4>
             <p>{{$user->about}}</p>
             @if (!Auth::guest())
-            <a class="btn btn-info" href="{{ route('users.edit',$user->id) }}">Edit</a>
+            <a class="pull-right" href="{{ route('users.edit',$user->id) }}"><i class="fas fa-edit"></i></a>
             @endif
     </aside>
     <section class="col-lg-9">
