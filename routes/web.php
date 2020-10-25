@@ -22,5 +22,8 @@ use Illuminate\Support\Facades\Auth;
 // });
 Route::get('/', 'HomeController@index');
 
-Route::get('/profile', 'PageController@profile')->middleware(['auth']);;
+Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+Route::post('profile', 'UserController@update');
+
+Route::get('/profile', 'UserController@profile')->middleware(['auth']);
 Auth::routes();

@@ -4,27 +4,29 @@
 <div class="row">
     <aside id="profile" class="col-lg-3 border text-center pt-4">
         <img class="rounded-circle fluid border" src="/uploads/avatars/{{$user->avatar}}" alt="avatar">
-        <h3 class="mt-4 font-weight-bold">Marko</h3>
+        <h3 class="mt-4 font-weight-bold">{{$user->name}}</h3>
         <div>
-            <h4 class="text-muted font-thin">UserName</h4>
+            <h4 class="text-muted font-thin">{{$user->username}}</h4>
         </div>
         <a class="btn-link"  href="https://github.com/automateeverythingM">automateeverythingM</a>
         <div class="d-flex my-4 flex-wrap">
             <span class="btn-sm btn-secondary  mb-2  cursor-pointer mr-1">Php</span>
-            <span  class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Mysql</span>
-            <span  class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Javascript</span>
-            <span  class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">C#</span>
-            <span  class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">React</span>
-            <span  class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
-            <span  class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
-            <span  class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
-            <span  class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
+            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Mysql</span>
+            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Javascript</span>
+            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">C#</span>
+            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">React</span>
+            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
+            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
+            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
+            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
         </div>
 
         <div class="text-left my-4">
             <h4>About:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, sit harum? Incidunt harum nobis, quo tenetur praesentium laudantium, magni fugit totam quisquam ducimus, esse natus pariatur aspernatur deserunt. Earum, unde!</p>
-
+            <p>{{$user->about}}</p>
+            @if (!Auth::guest())
+            <a class="btn btn-info" href="{{ route('users.edit',$user->id) }}">Edit</a>
+            @endif
     </aside>
     <section class="col-lg-9">
         <nav>
