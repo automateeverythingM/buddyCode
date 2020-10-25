@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <aside id="profile" class="col-lg-3 border text-center pt-4">
-        <img class="rounded-circle fluid border" src="https://picsum.photos/300/300" alt="avatar">
+        <img class="rounded-circle fluid border" src="/uploads/avatars/{{$user->avatar}}" alt="avatar">
         <h3 class="mt-4 font-weight-bold">Marko</h3>
         <div>
             <h4 class="text-muted font-thin">UserName</h4>
