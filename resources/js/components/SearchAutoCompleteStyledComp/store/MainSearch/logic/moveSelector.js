@@ -2,7 +2,6 @@ export default function moveSelector(state, key) {
     const keyCodes = { ArrowDown: 1, ArrowUp: -1 };
 
     let { dropdownSelector: current } = state;
-
     if (current === -1) {
         state.tempInputValue = state.inputValue;
     }

@@ -1,29 +1,42 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useContext } from "react";
-import { MainSearchContext } from "../SearchContext/SearchContext";
-import { actions } from "../SearchContext/SearchReducer";
+import { connect } from "react-redux";
+import {
+    addTag,
+    clearAllInputs,
+    popTag,
+    resetState,
+    setAllInputs,
+    setAutocompleteList,
+    setAutoSuggestion,
+    setInputValue,
+    moveSelector,
+} from "../store/MainSearch/mainSearchReducer";
 import { CloseButton, Input, InputWrapper, Wrapper } from "../StyledComp";
-export default function InputStyled({
+
+//
+function InputStyled({
     size,
     prependIcon,
     handleOnChange,
     suggestedWord,
-    dropDownStyle
+    dropDownStyle,
+    inputValue,
+    autoSuggestion,
+    tagLimit,
+    tagLimitReached,
+    addTag,
+    popTag,
+    resetState,
+    setAllInputs,
+    setAutocompleteList,
+    setAutoSuggestion,
+    setInputValue,
+    moveSelector,
 }) {
     //local state for input
     const [caseSensitiveFill, setCaseSensitive] = useState("");
-
-    //autosugustion koji se dopunjuje
-    const {
-        state: { inputValue, autoSuggestion },
-        dispatch
-    } = useContext(MainSearchContext);
-
     const input = useRef();
-    //FIXME: treba da prepravim ovo i da napravim poseban metod
-    const setValue = (action, value) =>
-        dispatch({ type: action, payload: { value } });
-
+    const timeout = useRef();
     //appedndujemo na base word suggestion
     const appendSuggestion = (currentValue, suggestion) => {
         const toAppend = suggestion.slice(currentValue.length);
@@ -31,107 +44,119 @@ export default function InputStyled({
         return currentValue;
     };
 
+    const setTagLimitUi = () => {
+        resetState();
+        setInputValue(`Tag Limit is ${tagLimit}`);
+    };
+
+    const autoSuggestionManager = (value) => {
+        if (tagLimitReached) return;
+        const name = suggestedWord(value);
+
+        if (name === autoSuggestion) return;
+        else if (!name) setAutoSuggestion("");
+        else {
+            setAutoSuggestion(appendSuggestion(value, name));
+            setCaseSensitive(name);
+        }
+    };
+
     //NOTE: treba doraditi ovo ne potrebno komplikovano
     useEffect(() => {
         if (inputValue === "") input.current.focus();
-        //odlaganje treba da se osmisli neki alg
-        let timer = setTimeout(() => {
-            //saljemo vredonst na osnovu koje cemo dobiti suggestion
-            const name = suggestedWord(inputValue);
-
-            if (name === autoSuggestion) return;
-            else if (!name) setValue(actions.SET_AUTO_SUGGESTION, "");
-            else {
-                setValue(
-                    actions.SET_AUTO_SUGGESTION,
-                    appendSuggestion(inputValue, name)
-                );
-                setCaseSensitive(name);
-            }
-        }, 50);
-
-        return () => clearTimeout(timer);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     });
 
+    useEffect(() => {
+        if (tagLimitReached) setTagLimitUi();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [tagLimitReached]);
+
+    useEffect(() => {
+        if (inputValue.trim()) handleOnChange(inputValue);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [inputValue]);
+
     // set value and call call users handler
-    const handleOnChangeInput = event => {
+    const handleOnChangeInput = (event) => {
         //uzimamo vrednos inputa
         const value = event.target.value;
 
         //setujemo value
-        setValue(actions.SET_INPUT_VALUE, value);
+        setInputValue(value);
+
+        autoSuggestionManager(value);
 
         //ako je prazan vracamo i cistimo listu ako je ostalo nesto
         if (!value) {
             //NOTE: treba probati sa proverom pre setovnja na prazno
-            dispatch({
-                type: actions.SET_AUTOCOMPLETE_LIST,
-                payload: { value: [] }
-            });
+            setAutocompleteList([]);
             return;
         }
         // spoljasnja promena
-        handleOnChange(value);
+        //? Mozda ovde mozda u useEffect
+
+        // handleOnChange(value);
     };
 
     //clean input value
-    const handleClearInput = event => {
+    const handleClearInput = (event) => {
         event.preventDefault();
-        //mozda nije dobra ideja ne znam da li dovoljno jasno sta se desava
-        dispatch({ type: actions.RESET_STATE });
+        resetState();
     };
 
     //tab autoSuggest pass value to input field
-    const handleKeyDown = event => {
+    const handleKeyDown = (event) => {
         const currentInputValue = event.target.value;
         if (event.key === "Tab") {
             event.preventDefault();
             //ako ima vredonst setujemo je
-
-            autoSuggestion &&
-                setValue(actions.SET_ALL_INPUTS, caseSensitiveFill);
+            autoSuggestion && setAllInputs(caseSensitiveFill);
         }
 
-        //
-        else if (event.key === "Backspace" && !currentInputValue) {
+        //NOTE: sredi ovo
+        else if (
+            event.key === "Backspace" &&
+            (tagLimitReached || !currentInputValue)
+        ) {
             //brisemo zadnje dodat tag
-            dispatch({ type: actions.POP_TAG });
+            if (tagLimitReached && currentInputValue) {
+                setAllInputs("");
+                return;
+            }
+            //NOTE: previse brzo brise tagove ako se zadrzi key mozda neki timeout
+            popTag();
         }
 
         //add tag and reset all
         else if (event.key === "Enter") {
-            dispatch({
-                type: actions.ADD_TAG,
-                payload: { tag: currentInputValue }
-            });
+            //proveravamo da li ima tag limit
+            if (tagLimitReached) return;
 
-            //
-            setValue(actions.RESET_STATE);
+            addTag(currentInputValue);
+            resetState();
         }
 
         //pomera selektor
         else if (event.key === "ArrowDown") {
             event.preventDefault();
-            dispatch({
-                type: actions.MOVE_SELECTOR,
-                payload: { key: event.key }
-            });
+            moveSelector(event.key);
         }
 
         //
         else if (event.key === "ArrowUp") {
             event.preventDefault();
-            dispatch({
-                type: actions.MOVE_SELECTOR,
-                payload: { key: event.key }
-            });
+            moveSelector(event.key);
         }
     };
 
     //
+
     return (
-        <Wrapper size={size} dropDownStyle={dropDownStyle}>
+        <Wrapper
+            size={size}
+            dropDownStyle={dropDownStyle}
+            tagLimitReached={tagLimitReached}
+        >
             {prependIcon}
             <InputWrapper>
                 <Input
@@ -149,7 +174,7 @@ export default function InputStyled({
                     autoComplete="off"
                     value={autoSuggestion}
                     zIndex="20"
-                    color="#aaa"
+                    color="#d4d4d4"
                 />
             </InputWrapper>
             <CloseButton
@@ -162,3 +187,31 @@ export default function InputStyled({
         </Wrapper>
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+        inputValue: state.inputValue,
+        autoSuggestion: state.autoSuggestion,
+        tagLimit: state.tagLimit,
+        tagLimitReached:
+            state.tagLimit && state.tagLimit <= state.tagList.length,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setAutoSuggestion: (value) => {
+            dispatch(setAutoSuggestion(value));
+        },
+        setInputValue: (value) => dispatch(setInputValue(value)),
+        setAutocompleteList: (value) => dispatch(setAutocompleteList(value)),
+        clearAllInputs: (value) => dispatch(clearAllInputs()),
+        setAllInputs: (value) => dispatch(setAllInputs(value)),
+        popTag: (value) => dispatch(popTag()),
+        addTag: (value) => dispatch(addTag(value)),
+        resetState: (value) => dispatch(resetState()),
+        moveSelector: (value) => dispatch(moveSelector(value)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputStyled);

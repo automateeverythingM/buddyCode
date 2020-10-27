@@ -18,7 +18,7 @@ const initialState = {
     moveSelector: () => {},
     setInputValue: () => {},
     setAutoSuggestion: () => {},
-    setAutocompleteList: () => {}
+    setAutocompleteList: () => {},
 };
 
 export const MainSearchContext = React.createContext({});

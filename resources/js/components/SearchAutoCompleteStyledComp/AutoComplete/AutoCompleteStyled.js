@@ -1,21 +1,24 @@
-import React, { useContext } from "react";
-import { MainSearchContext } from "../SearchContext/SearchContext";
-import { actions } from "../SearchContext/SearchReducer";
+import React from "react";
+import { connect } from "react-redux";
+import {
+    resetState,
+    setInputValue,
+    setSelector,
+} from "../store/MainSearch/mainSearchReducer";
 import { Li, UlDropdown } from "../StyledComp";
 
-export default function AutoCompleteStyled() {
-    const {
-        state: { dropdownSelector, autocompleteList: data },
-        dispatch,
-    } = useContext(MainSearchContext);
-    //resetujemo state zbog key pa posle setujemo input 
+function AutoCompleteStyled({
+    autocompleteList: data,
+    dropdownSelector,
+    setInputValue,
+    resetState,
+}) {
+    //resetujemo state zbog key pa posle setujemo input
     //NOTE: trebalo bi da  napisem jedan metod za oba
     function onClickHandler(e) {
-        dispatch({ type: actions.RESET_STATE });
-        dispatch({
-            type: actions.SET_INPUT_VALUE,
-            payload: { value: e.target.innerText },
-        });
+        resetState();
+        setInputValue(e.target.innerText);
+        console.log("onClickHandler -> e.target.innerText", e.target.innerText);
     }
 
     return (
@@ -23,10 +26,7 @@ export default function AutoCompleteStyled() {
             position="absolute"
             onClick={onClickHandler}
             onMouseLeave={(e) => {
-                dispatch({
-                    type: actions.SET_SELECTOR,
-                    payload: { index: -1 },
-                });
+                setSelector(-1);
             }}
         >
             {data.map((item, index) => (
@@ -41,3 +41,16 @@ export default function AutoCompleteStyled() {
         </UlDropdown>
     );
 }
+
+const mapStateToProps = (state) => ({
+    dropdownSelector: state.dropdownSelector,
+    autocompleteList: state.autocompleteList,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    setSelector: (index) => dispatch(setSelector(index)),
+    resetState: () => dispatch(resetState()),
+    setInputValue: (value) => dispatch(setInputValue(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AutoCompleteStyled);
