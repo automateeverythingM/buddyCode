@@ -20,7 +20,7 @@ import "jquery-validation";
 // require("./components/Example");
 // require("./components/NavBar/Navigation");
 // require("./components/HomePageContent/HomePage");
-require("./components/SearchAutoCompleteStyledComp/SeaechAppHolder");
+require("./components/SearchAutoCompleteStyledComp/SearchAppHolder");
 
 (function() {
     var register = $("#register").on("submit", function(event) {

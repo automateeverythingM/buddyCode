@@ -9,7 +9,7 @@ import {
     setAutocompleteList,
     setAutoSuggestion,
     setInputValue,
-    moveSelector,
+    moveSelector
 } from "../store/MainSearch/mainSearchReducer";
 import { CloseButton, Input, InputWrapper, Wrapper } from "../StyledComp";
 
@@ -31,7 +31,7 @@ function InputStyled({
     setAutocompleteList,
     setAutoSuggestion,
     setInputValue,
-    moveSelector,
+    moveSelector
 }) {
     //local state for input
     const [caseSensitiveFill, setCaseSensitive] = useState("");
@@ -49,7 +49,7 @@ function InputStyled({
         setInputValue(`Tag Limit is ${tagLimit}`);
     };
 
-    const autoSuggestionManager = (value) => {
+    const autoSuggestionManager = value => {
         if (tagLimitReached) return;
         const name = suggestedWord(value);
 
@@ -71,13 +71,13 @@ function InputStyled({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tagLimitReached]);
 
-    useEffect(() => {
-        if (inputValue.trim()) handleOnChange(inputValue);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [inputValue]);
+    // useEffect(() => {
+    //     if (inputValue.trim()) handleOnChange(inputValue);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [inputValue]);
 
     // set value and call call users handler
-    const handleOnChangeInput = (event) => {
+    const handleOnChangeInput = event => {
         //uzimamo vrednos inputa
         const value = event.target.value;
 
@@ -95,17 +95,17 @@ function InputStyled({
         // spoljasnja promena
         //? Mozda ovde mozda u useEffect
 
-        // handleOnChange(value);
+        handleOnChange(value);
     };
 
     //clean input value
-    const handleClearInput = (event) => {
+    const handleClearInput = event => {
         event.preventDefault();
         resetState();
     };
 
     //tab autoSuggest pass value to input field
-    const handleKeyDown = (event) => {
+    const handleKeyDown = event => {
         const currentInputValue = event.target.value;
         if (event.key === "Tab") {
             event.preventDefault();
@@ -188,29 +188,29 @@ function InputStyled({
     );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         inputValue: state.inputValue,
         autoSuggestion: state.autoSuggestion,
         tagLimit: state.tagLimit,
         tagLimitReached:
-            state.tagLimit && state.tagLimit <= state.tagList.length,
+            state.tagLimit && state.tagLimit <= state.tagList.length
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
-        setAutoSuggestion: (value) => {
+        setAutoSuggestion: value => {
             dispatch(setAutoSuggestion(value));
         },
-        setInputValue: (value) => dispatch(setInputValue(value)),
-        setAutocompleteList: (value) => dispatch(setAutocompleteList(value)),
-        clearAllInputs: (value) => dispatch(clearAllInputs()),
-        setAllInputs: (value) => dispatch(setAllInputs(value)),
-        popTag: (value) => dispatch(popTag()),
-        addTag: (value) => dispatch(addTag(value)),
-        resetState: (value) => dispatch(resetState()),
-        moveSelector: (value) => dispatch(moveSelector(value)),
+        setInputValue: value => dispatch(setInputValue(value)),
+        setAutocompleteList: value => dispatch(setAutocompleteList(value)),
+        clearAllInputs: value => dispatch(clearAllInputs()),
+        setAllInputs: value => dispatch(setAllInputs(value)),
+        popTag: value => dispatch(popTag()),
+        addTag: value => dispatch(addTag(value)),
+        resetState: value => dispatch(resetState()),
+        moveSelector: value => dispatch(moveSelector(value))
     };
 };
 

@@ -3,17 +3,17 @@ import { lighten, darken } from "polished";
 
 //!!!INPUTSTYLE
 export const Input = styled.input`
-    position: ${(props) => props.position || "absolute"};
+    position: ${props => props.position || "absolute"};
     font-size: 0.7em;
-    width: ${(props) => props.width || "3000px"};
+    width: ${props => props.width || "3000px"};
     outline: none;
     border: none;
-    font-size: ${(props) => props.fontSize || "0.7em"};
-    color: ${(props) => props.color || "#333"};
+    font-size: ${props => props.fontSize || "0.7em"};
+    color: ${props => props.color || "#333"};
     padding: 0.2em 0;
     padding-left: 0.1em;
-    background: ${(props) => props.backgroundColor || "transparent"};
-    z-index: ${(props) => props.zIndex};
+    background: ${props => props.backgroundColor || "transparent"};
+    z-index: ${props => props.zIndex};
 `;
 
 export const InputWrapper = styled.div`
@@ -22,17 +22,17 @@ export const InputWrapper = styled.div`
     display: flex;
     align-items: center;
     padding-left: 0.7em;
-    width: ${(props) => props.width || "100%"};
-    height: ${(props) => props.height || "1.5em"};
+    width: ${props => props.width || "100%"};
+    height: ${props => props.height || "1.5em"};
 `;
 
 export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     overflow: hidden;
-    background-color: ${(props) => props.backgroundColor || "whitesmoke"};
+    background-color: ${props => props.backgroundColor || "whitesmoke"};
     padding: 0.2em 0 0.2em 0.3em;
-    font-size: ${(props) => props.size || "1rem"};
+    font-size: ${props => props.size || "1rem"};
     border-right: 1px solid #ddd;
     border-top: 1px solid #eee;
     border-left: 1px solid #eee;
@@ -42,13 +42,13 @@ export const Wrapper = styled.div`
     -moz-border-radius: 0.2em;
     -ms-border-radius: 0.2em;
     -o-border-radius: 0.2em;
-    ${(props) =>
+    ${props =>
         props.tagLimitReached &&
         css`
             border: 0.1em solid darkred;
         `}
 
-    ${(props) =>
+    ${props =>
         props.dropDownStyle &&
         css`
             border-radius: 0.2em 0.2em 0 0;
@@ -69,12 +69,12 @@ export const Button = styled.button`
 `;
 
 export const Icon = styled(Button)`
-    color: ${(props) => props.color || "#333333"};
+    color: ${props => props.color || "#333333"};
     font-size: 0.5em;
     padding: 0 0.5em;
 
     &:hover {
-        color: ${(props) => lighten(0.2, props.color)};
+        color: ${props => lighten(0.2, props.color)};
     }
 
     &:active {
@@ -83,12 +83,12 @@ export const Icon = styled(Button)`
 `;
 
 export const CloseButton = styled(Button)`
-    visibility: ${(props) => (props.show ? "visible" : "hidden")};
+    visibility: ${props => (props.show ? "visible" : "hidden")};
     color: red;
     padding: 0 0.5em;
     font-size: 0.8em;
     &:hover {
-        color: ${(props) => darken(0.2, props.color)};
+        color: ${props => darken(0.2, props.color)};
     }
 
     &:active {
@@ -105,8 +105,8 @@ export const RelativeContainer = styled.div`
 
 //!Search dropdown
 export const Ul = styled.ul`
-    display: ${(props) => props.display};
-    position: ${(props) => props.position};
+    display: ${props => props.display};
+    position: ${props => props.position};
     list-style: none;
     margin: 0;
     padding: 0;
@@ -122,20 +122,20 @@ export const UlDropdown = styled(Ul)`
 `;
 
 export const Li = styled.li`
-    text-align: ${(props) => props.textAlign || "left"};
-    background-color: ${(props) => props.backgroundColor || "whitesmoke"};
+    text-align: ${props => props.textAlign || "left"};
+    background-color: ${props => props.backgroundColor || "whitesmoke"};
     padding: 0.5em 3em;
     z-index: 999;
 
     &:hover {
-        background-color: ${(props) =>
+        background-color: ${props =>
             darken(0.1, props.backgroundColor || "white")};
     }
 
-    ${(props) =>
+    ${props =>
         props.selected &&
         css`
-            background-color: ${(props) =>
+            background-color: ${props =>
                 darken(0.1, props.backgroundColor || "white")};
         `}
 `;
@@ -162,10 +162,10 @@ export const CloseTag = styled.label`
 `;
 export const LiTag = styled.li`
     display: inline-flex;
-    padding: ${(props) => props.padding || "5px 15px"};
+    padding: ${props => props.padding || "5px 15px"};
     margin: 0 0.5em 0.5em 0px;
     font-size: inherit;
-    border-radius: ${(props) => props.borderRadius || "4px"};
+    border-radius: ${props => props.borderRadius || "4px"};
     overflow: hidden;
     box-sizing: border-box;
     cursor: pointer;
@@ -185,7 +185,7 @@ export const TagLabel = styled.div`
     display: inline-block;
     font-size: inherit;
     text-decoration: none;
-    color: ${(props) => props.textColor};
+    color: ${props => props.textColor};
     padding: 5px;
     font-weight: bold;
 `;
@@ -221,6 +221,7 @@ export const TagLabel = styled.div`
 
 export const Jumbotron = styled.div`
     position: relative;
+    font-size: 12px;
     width: 80%;
     border-radius: 1em;
     padding: 2em;
