@@ -72,7 +72,7 @@ const initialState = {
     inputValue: "",
     autoSuggestion: "",
     dropdownSelector: -1,
-    tagLimit: 8,
+    tagLimit: 0,
     keyCodes: { 40: 1, 38: -1 },
     manageTagList: () => {},
     onDeleteHandler: () => {},
@@ -80,14 +80,14 @@ const initialState = {
     moveSelector: () => {},
     setInputValue: () => {},
     setAutoSuggestion: () => {},
-    setAutocompleteList: () => {},
+    setAutocompleteList: () => {}
 };
 //! ****************************************************************//
 //!REDUCER
 export default function reducer(state = initialState, action) {
     const { type, payload } = action;
 
-    return produce(state, (draft) => {
+    return produce(state, draft => {
         switch (type) {
             case ADD_TAG:
                 const { tagName } = payload;

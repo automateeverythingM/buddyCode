@@ -34,7 +34,7 @@
 
         @include('layouts.nav.navbar')
 
-        <main class="py-4 container-fluid w-75 main-container">
+        <main class="py-4 container">
             @yield('content')
         </main>
 

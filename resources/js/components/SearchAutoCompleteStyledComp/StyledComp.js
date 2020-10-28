@@ -111,6 +111,7 @@ export const Ul = styled.ul`
     margin: 0;
     padding: 0;
     width: 100%;
+    z-index: 12;
 `;
 
 export const UlDropdown = styled(Ul)`
@@ -220,12 +221,26 @@ export const TagLabel = styled.div`
 //!
 
 export const Jumbotron = styled.div`
+    display: flex;
+    flex-direction: column;
     position: relative;
-    font-size: 12px;
-    width: 80%;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
     border-radius: 1em;
-    padding: 2em;
-    background: #1c2321;
+    padding: 8em 2em 8em 2em;
+    background: #343a40;
+`;
+
+export const BrandLogo = styled.svg`
+    position: absolute;
+    left: 0;
+    z-index: 0;
+`;
+
+export const DivZIndex = styled.div`
+    width: 70%;
+    z-index: 10;
 `;
 
 export const TitleMsg = styled.h1`
