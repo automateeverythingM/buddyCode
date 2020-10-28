@@ -79,7 +79,7 @@ function InputStyled({
     // set value and call call users handler
     const handleOnChangeInput = event => {
         //uzimamo vrednos inputa
-        const value = event.target.value;
+        const value = event.target.value.trim();
 
         //setujemo value
         setInputValue(value);
