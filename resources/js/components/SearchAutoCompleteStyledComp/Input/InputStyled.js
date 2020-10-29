@@ -36,13 +36,15 @@ function InputStyled({
     //local state for input
     const [caseSensitiveFill, setCaseSensitive] = useState("");
     const input = useRef();
-    const timeout = useRef();
+
     //appedndujemo na base word suggestion
     const appendSuggestion = (currentValue, suggestion) => {
         const toAppend = suggestion.slice(currentValue.length);
         currentValue += toAppend;
         return currentValue;
     };
+
+    console.log("dropDownStyle", dropDownStyle);
 
     const setTagLimitUi = () => {
         resetState();
@@ -193,6 +195,7 @@ const mapStateToProps = state => {
         inputValue: state.inputValue,
         autoSuggestion: state.autoSuggestion,
         tagLimit: state.tagLimit,
+        dropDownStyle: !!state.autocompleteList.length,
         tagLimitReached:
             state.tagLimit && state.tagLimit <= state.tagList.length
     };
