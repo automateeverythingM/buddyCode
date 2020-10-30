@@ -22,6 +22,7 @@ import "jquery-validation";
 // require("./components/HomePageContent/HomePage");
 require("./components/SearchAutoCompleteStyledComp/SearchAppHolder");
 
+
 (function() {
     var register = $("#register").on("submit", function(event) {
         const register = $("#register");

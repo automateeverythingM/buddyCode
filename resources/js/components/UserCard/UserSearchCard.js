@@ -1,7 +1,12 @@
-import React from "react";
+import Axios from "axios";
+import React, { useEffect, useState } from "react";
 
-export default function UserSearchCard(props) {
-    const { name, avatar_url, html_url, location } = props;
+export default function UserSearchCard({
+    name,
+    html_url,
+    avatar_url,
+    location
+}) {
     return (
         <li>
             <img src={avatar_url} alt="github avatar" />
@@ -11,4 +16,3 @@ export default function UserSearchCard(props) {
         </li>
     );
 }
-

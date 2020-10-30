@@ -1,12 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import UserSearchCard from "../UserCard/UserSearchCard";
 import SearchAutoTags from "./SearchAutoTags";
 import Provider from "./store/configStore";
 export default function SearchAppHolder() {
     return (
-        <Provider>
-            <SearchAutoTags />
-        </Provider>
+        <div>
+            <Provider>
+                <SearchAutoTags />
+            </Provider>
+            <UserSearchCard />
+        </div>
     );
 }
 
