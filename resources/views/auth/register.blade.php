@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form id="register" class="needs-validation" method="POST" action="{{ route('register') }}"
+                    <form id="register" class="needs-validation" method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
                         novalidate>
                         @csrf
 
@@ -93,8 +93,7 @@
 
 
                         <div class="form-group row">
-                            <label for="about"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Something about yourself') }}</label>
+                            <label for="about" class="col-md-4 col-form-label text-md-right">{{ __('Something about yourself') }}</label>
 
                             <div class="col-md-6">
                                 <textarea id="about" class="form-control block mt-1 w-full border" rows="8"
