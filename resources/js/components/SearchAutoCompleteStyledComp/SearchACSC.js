@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AutoCompleteStyled from "./AutoComplete/AutoCompleteStyled";
 import InputStyled from "./Input/InputStyled";
 import mockStates from "./mocks/inputAutoComplete";
 import { RelativeContainer } from "./StyledComp";
 import { connect } from "react-redux";
-import { setAutocompleteList } from "./store/MainSearch/mainSearchReducer";
+import {
+    fetchAutoCompleteList,
+    setAutocompleteList,
+} from "./store/MainSearch/mainSearchReducer";
 
 function SearchACSC({
     autocompleteList,
-    setAutocompleteList,
-    tagLimitReached,
+    inputLength,
+    getAutoCompleteList,
+    emptyAutoCompleteList,
 }) {
     //Proveravamo da li je lista prazna
-    const dropdown = !!autocompleteList.length;
+    const showDropdown = !!autocompleteList.length && !!inputLength;
 
     //Trazimo odgovarajucu rec za dopunu
     //NOTE: treba napraviti dobru logiku i snimati najcesce koriscene reci
@@ -21,37 +25,27 @@ function SearchACSC({
         const word = mockStates.find((x) =>
             x.name.toLowerCase().startsWith(input.toLowerCase())
         );
-
         return word ? word.name : null;
     };
 
     //trazimo listu iz api rute
     const onChange = (inputValue) => {
-        if (tagLimitReached) return;
-        fetch("https://api.npoint.io/b12a6e7e85e8e63d54a2")
-            .then((res) => res.json())
-            .then((data) => {
-                const result = data.filter((item) => {
-                    return item.name
-                        .toLowerCase()
-                        .startsWith(inputValue.toLowerCase());
-                });
-
-                const finished = result.slice(0, 10);
-
-                setAutocompleteList(finished);
-            });
+        getAutoCompleteList(inputValue);
     };
+    //prazni listu ako je ostalo nesto posle zatvaranja liste
+    useEffect(() => {
+        if (!showDropdown) emptyAutoCompleteList([]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [showDropdown]);
 
     return (
         <RelativeContainer>
             <InputStyled
-                size={"3em"}
                 suggestedWord={suggestionWords}
                 handleOnChange={onChange}
-                dropDownStyle={autocompleteList.length}
+                showDropdown={showDropdown}
             />
-            {dropdown && <AutoCompleteStyled />}
+            {showDropdown && <AutoCompleteStyled />}
         </RelativeContainer>
     );
 }
@@ -59,16 +53,14 @@ function SearchACSC({
 const mapStateToProps = (state) => {
     return {
         autocompleteList: state.autocompleteList,
-        tagLimitReached:
-            state.tagLimit && state.tagLimit <= state.tagList.length,
+        inputLength: state.inputValue.length,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setAutocompleteList: (value) => {
-            dispatch(setAutocompleteList(value));
-        },
+        getAutoCompleteList: (value) => dispatch(fetchAutoCompleteList(value)),
+        emptyAutoCompleteList: (value) => dispatch(setAutocompleteList(value)),
     };
 };
 

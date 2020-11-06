@@ -1,58 +1,60 @@
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
+import { GoSearch } from "react-icons/go";
 import {
     addTag,
     clearAllInputs,
     popTag,
     resetState,
     setAllInputs,
-    setAutocompleteList,
     setAutoSuggestion,
     setInputValue,
-    moveSelector
+    moveSelector,
+    clearAutocompleteList,
+    setCaseSensitiveSuggestion,
+    focusInput,
+    assignInputRef,
 } from "../store/MainSearch/mainSearchReducer";
-import { CloseButton, Input, InputWrapper, Wrapper } from "../StyledComp";
-
-//
+import {
+    CloseButton,
+    Input,
+    InputWrapper,
+    SearchButton,
+    SearchInputs,
+    Wrapper,
+} from "../StyledComp";
+import Selection from "../Selection/Selection";
 function InputStyled({
-    size,
-    prependIcon,
     handleOnChange,
     suggestedWord,
-    dropDownStyle,
+    showDropdown,
     inputValue,
+    assignInputRef,
     autoSuggestion,
-    tagLimit,
-    tagLimitReached,
+    clearAutocompleteList,
     addTag,
     popTag,
     resetState,
     setAllInputs,
-    setAutocompleteList,
     setAutoSuggestion,
     setInputValue,
-    moveSelector
+    moveSelector,
+    setCaseSensitive,
+    caseSensitiveFill,
+    dropdownSelector,
 }) {
-    //local state for input
-    const [caseSensitiveFill, setCaseSensitive] = useState("");
-    const input = useRef();
-
+    const [backspaceDelay, setBackspaceDelay] = useState(true);
     //appedndujemo na base word suggestion
+
+    let inputRef;
+
     const appendSuggestion = (currentValue, suggestion) => {
         const toAppend = suggestion.slice(currentValue.length);
         currentValue += toAppend;
         return currentValue;
     };
 
-    console.log("dropDownStyle", dropDownStyle);
-
-    const setTagLimitUi = () => {
-        resetState();
-        setInputValue(`Tag Limit is ${tagLimit}`);
-    };
-
-    const autoSuggestionManager = value => {
-        if (tagLimitReached) return;
+    const autoSuggestionManager = (value) => {
         const name = suggestedWord(value);
 
         if (name === autoSuggestion) return;
@@ -65,75 +67,53 @@ function InputStyled({
 
     //NOTE: treba doraditi ovo ne potrebno komplikovano
     useEffect(() => {
-        if (inputValue === "") input.current.focus();
+        if (inputValue === "") inputRef.focus();
     });
 
     useEffect(() => {
-        if (tagLimitReached) setTagLimitUi();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [tagLimitReached]);
-
-    // useEffect(() => {
-    //     if (inputValue.trim()) handleOnChange(inputValue);
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [inputValue]);
+        inputRef.focus();
+        assignInputRef(inputRef);
+    }, [assignInputRef, inputRef]);
 
     // set value and call call users handler
-    const handleOnChangeInput = event => {
-        //uzimamo vrednos inputa
-        const value = event.target.value.trim();
+    const handleOnChangeInput = (event) => {
+        const value = event.target.value;
 
-        //setujemo value
         setInputValue(value);
-
         autoSuggestionManager(value);
 
-        //ako je prazan vracamo i cistimo listu ako je ostalo nesto
-        if (!value) {
-            //NOTE: treba probati sa proverom pre setovnja na prazno
-            setAutocompleteList([]);
-            return;
-        }
-        // spoljasnja promena
-        //? Mozda ovde mozda u useEffect
-
-        handleOnChange(value);
+        if (value.trim()) handleOnChange(value);
+        setBackspaceDelay(false);
     };
 
     //clean input value
-    const handleClearInput = event => {
+    const handleClearInput = (event) => {
         event.preventDefault();
         resetState();
     };
 
     //tab autoSuggest pass value to input field
-    const handleKeyDown = event => {
+    const handleKeyDown = (event) => {
         const currentInputValue = event.target.value;
         if (event.key === "Tab") {
             event.preventDefault();
+            if (dropdownSelector > -1) return;
+
+            // if (dropdownSelector !== -1) return;
             //ako ima vredonst setujemo je
             autoSuggestion && setAllInputs(caseSensitiveFill);
         }
+        //
+        else if (event.key === "Backspace" && !currentInputValue) {
+            // NOTE: previse brzo brise tagove ako se zadrzi key, mozda neki timeout
 
-        //NOTE: sredi ovo
-        else if (
-            event.key === "Backspace" &&
-            (tagLimitReached || !currentInputValue)
-        ) {
-            //brisemo zadnje dodat tag
-            if (tagLimitReached && currentInputValue) {
-                setAllInputs("");
-                return;
+            if (backspaceDelay) {
+                popTag();
             }
-            //NOTE: previse brzo brise tagove ako se zadrzi key mozda neki timeout
-            popTag();
         }
-
         //add tag and reset all
         else if (event.key === "Enter") {
-            //proveravamo da li ima tag limit
-            if (tagLimitReached) return;
-
             addTag(currentInputValue);
             resetState();
         }
@@ -149,71 +129,91 @@ function InputStyled({
             event.preventDefault();
             moveSelector(event.key);
         }
+        //
+        else if (event.key === "Escape") {
+            console.log("handleKeyDown -> event.key", event.key);
+            clearAutocompleteList();
+        }
     };
+
+    function handleKeyUp(event) {
+        const currentInputValue = event.target.value;
+
+        if (event.key === "Backspace" && !currentInputValue) {
+            // NOTE: previse brzo brise tagove ako se zadrzi key, mozda neki timeout
+            setBackspaceDelay(true);
+        }
+    }
 
     //
 
     return (
-        <Wrapper
-            size={size}
-            dropDownStyle={dropDownStyle}
-            tagLimitReached={tagLimitReached}
-        >
-            {prependIcon}
-            <InputWrapper>
-                <Input
-                    type="text"
-                    autoComplete="off"
-                    value={inputValue}
-                    onChange={handleOnChangeInput}
-                    onKeyDown={handleKeyDown}
-                    zIndex="50"
-                    ref={input}
-                />
-                <Input
-                    type="text"
-                    readOnly
-                    autoComplete="off"
-                    value={autoSuggestion}
-                    zIndex="20"
-                    color="#d4d4d4"
-                />
-            </InputWrapper>
-            <CloseButton
-                color="red"
-                show={inputValue.length}
-                onClick={handleClearInput}
-            >
-                &times;
-            </CloseButton>
+        <Wrapper>
+            <SearchInputs showDropdown={showDropdown}>
+                <InputWrapper>
+                    <Input
+                        type="text"
+                        autoComplete="off"
+                        value={inputValue}
+                        onChange={handleOnChangeInput}
+                        onKeyDown={handleKeyDown}
+                        onKeyUp={handleKeyUp}
+                        zIndex="50"
+                        ref={(input) => (inputRef = input)}
+                    />
+                    <Input
+                        type="text"
+                        readOnly
+                        autoComplete="off"
+                        value={autoSuggestion}
+                        zIndex="20"
+                        color="#d4d4d4"
+                        autoFocus
+                    />
+                </InputWrapper>
+                <CloseButton
+                    color="red"
+                    show={inputValue.length}
+                    onClick={handleClearInput}
+                >
+                    &times;
+                </CloseButton>
+            </SearchInputs>
+            <Selection />
+            <SearchButton showDropdown={showDropdown}>
+                <GoSearch size="1.5em" />
+            </SearchButton>
         </Wrapper>
     );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         inputValue: state.inputValue,
         autoSuggestion: state.autoSuggestion,
-        tagLimit: state.tagLimit,
-        dropDownStyle: !!state.autocompleteList.length,
-        tagLimitReached:
-            state.tagLimit && state.tagLimit <= state.tagList.length
+        caseSensitiveFill: state.caseSensitiveFillSuggestion,
+        dropdownSelector: state.dropdownSelector,
+        refInput: state.inputRef,
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        setAutoSuggestion: value => {
+        setAutoSuggestion: (value) => {
             dispatch(setAutoSuggestion(value));
         },
-        setInputValue: value => dispatch(setInputValue(value)),
-        setAutocompleteList: value => dispatch(setAutocompleteList(value)),
-        clearAllInputs: value => dispatch(clearAllInputs()),
-        setAllInputs: value => dispatch(setAllInputs(value)),
-        popTag: value => dispatch(popTag()),
-        addTag: value => dispatch(addTag(value)),
-        resetState: value => dispatch(resetState()),
-        moveSelector: value => dispatch(moveSelector(value))
+        setInputValue: (value) => dispatch(setInputValue(value)),
+        clearAutocompleteList: () => dispatch(clearAutocompleteList()),
+        clearAllInputs: () => dispatch(clearAllInputs()),
+        setAllInputs: (value) => dispatch(setAllInputs(value)),
+        popTag: () => dispatch(popTag()),
+        addTag: (value) => dispatch(addTag(value)),
+        resetState: () => dispatch(resetState()),
+        moveSelector: (value) => dispatch(moveSelector(value)),
+        setCaseSensitive: (value) =>
+            dispatch(setCaseSensitiveSuggestion(value)),
+        setInputFocus: () => dispatch(focusInput()),
+        assignInputRef: (value) => dispatch(assignInputRef(value)),
     };
 };
 

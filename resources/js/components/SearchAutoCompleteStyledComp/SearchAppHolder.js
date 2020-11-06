@@ -1,19 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import UserSearchCard from "../UserCard/UserSearchCard";
+import InputSearch from "../InputSearch";
 import SearchAutoTags from "./SearchAutoTags";
 import Provider from "./store/configStore";
 export default function SearchAppHolder() {
     return (
-        <div>
-            <Provider>
-                <SearchAutoTags />
-            </Provider>
-            <UserSearchCard />
-        </div>
+        <Provider>
+            <SearchAutoTags />
+            <InputSearch />
+        </Provider>
     );
 }
 
-if (document.getElementById("mainSearch")) {
-    ReactDOM.render(<SearchAppHolder />, document.getElementById("mainSearch"));
+if (document.getElementById("root")) {
+    ReactDOM.render(<SearchAppHolder />, document.getElementById("root"));
 }
