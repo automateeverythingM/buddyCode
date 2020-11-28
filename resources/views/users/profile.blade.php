@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <aside id="profile" class="col-lg-3 border text-center pt-4">
-        <img class="rounded-circle fluid border" src="/uploads/avatars/{{$user->avatar}}" alt="avatar">
+        <img class="rounded-circle fluid border" style="width:250px; height=250px;" src="/uploads/avatars/{{$user->avatar}}" alt="avatar">
         <h3 class="mt-4 font-weight-bold">{{$user->name}}</h3>
         <div>
             <h4 class="text-muted font-thin">{{$user->username}}</h4>
