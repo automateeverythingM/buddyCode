@@ -645,3 +645,13 @@
     });
   })(window.jQuery);
   
+
+ 
+  $(document).ready(function(){
+    $(".mul-select").select2({
+            placeholder: "select country", //placeholder
+            tags: true,
+            tokenSeparators: ['/',',',';'," "] 
+        });
+    })
+

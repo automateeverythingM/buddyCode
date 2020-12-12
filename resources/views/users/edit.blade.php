@@ -4,7 +4,7 @@
 
 
 <form enctype="multipart/form-data" action="/profile" method="POST">
-    @csrf
+    {{ csrf_field() }}
     
     <div class="row">
 
@@ -15,7 +15,23 @@
             </div>
             
             <input type="file" name="avatar" value="">
-            
+
+            <br>
+            <br>
+
+            {{-- <div class="form-check" >
+                
+                <div class="row">
+                    @foreach ($skills as $skill)
+                    <div class="col-md-12">
+                        <input type="checkbox" name="skill_id[]" value="{{$skill->id}}"  multiple>
+                        <label class="form-check-label" for="exampleCheck1">{{$skill->name}}</label>  
+                    </div>
+                    @endforeach 
+                </div>
+                   
+               
+              </div>  --}}          
         </aside>
         <section class="col-lg-9">
             <div class="form-group row">
@@ -88,13 +104,18 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row  ">
                 <label for="skills" class="col-md-4 col-form-label text-md-right">{{ __('Skills') }}</label>
-                <div class="col-md-6">
-                    <input class="form-control" type="text" value="" name="skills[]" data-role="tagsinput"
-                        placeholder="Add tags" />
+                <div class="col-md-6 " >
+                        <div class="row skill">
+                            @foreach ($skills as $skill)
+                            <div class="col-md-6 ">
+                                <input type="checkbox" name="skill_id[]" value="{{$skill->id}}" scroll  multiple>
+                                <label class="form-check-label" for="exampleCheck1">{{$skill->name}}</label>  
+                            </div>
+                            @endforeach 
+                        </div>
                 </div>
-
             </div>
 
 
@@ -108,8 +129,9 @@
 
                 </div>
             </div>
-            <input type="submit" class="btn btn-primary pull-right" >
+            <input type="submit" class="btn btn-primary pull-right">
         </section>
     </div>
 </form>
 @endsection
+

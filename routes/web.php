@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'HomeController@index');
 
 Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+Route::get('/users.edit',  'UserController@edit');
 Route::post('/profile',  'UserController@update');
 
 Route::get('/profile', 'UserController@profile')->middleware(['auth']);

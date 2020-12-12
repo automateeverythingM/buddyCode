@@ -10,15 +10,17 @@
         </div>
         <a class="btn-link"  href="https://github.com/automateeverythingM">automateeverythingM</a>
         <div class="d-flex my-4 flex-wrap">
-            <span class="btn-sm btn-secondary  mb-2  cursor-pointer mr-1">Php</span>
-            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Mysql</span>
+            @foreach ($user->skills as $skill)
+            <span class="btn-sm btn-secondary  mb-2  cursor-pointer mr-1">{{$skill->name}}</span>
+            {{-- <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Mysql</span>
             <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Javascript</span>
             <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">C#</span>
             <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">React</span>
             <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
             <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
             <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
-            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span>
+            <span class="btn-sm btn-secondary mb-2 cursor-pointer  mr-1">Python</span> --}}
+            @endforeach
         </div>
 
         <div class="text-left my-4">
