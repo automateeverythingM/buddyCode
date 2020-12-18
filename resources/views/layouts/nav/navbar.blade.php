@@ -48,7 +48,9 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" role="button"
                     aria-haspopup="true" aria-expanded="false">
                     <span class="d-inline-block mr-1" style="width: 2em; height: 2em;">
-                        <img class="mr-1 border img-fluid rounded-circle" src="/uploads/avatars/{{$user->avatar}}"
+                       
+                        <img class="mr-1 border img-fluid rounded-circle" src="/uploads/avatars/{{auth()->user()->avatar}}"
+                      
                             alt="avatar user">
                     </span>
                     <span>{{ Auth::user()->name }}</span>

@@ -50,4 +50,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Skill')->withTimestamps();
     }
+
+
+    public function projects()
+    {
+        return $this->belongsTo('App\Models\Project');
+    }
 }

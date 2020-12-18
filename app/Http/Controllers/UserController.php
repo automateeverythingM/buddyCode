@@ -8,14 +8,17 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Models\User;
 use App\Models\Skill;
+use App\Models\Project;
 use Image;
 
 class UserController extends Controller
 {
     public function profile()
     {
-        $skills = User::all();
-        return view('users.profile', array('user'=> Auth::user()))->with('skills', $skills);
+        $user = Auth::user();
+        $projects = Project::where('user_id',$user->id)->get();
+        $skills = Skill::all();
+        return view('users.profile', array('user'=> Auth::user()))->with(['skills'=>$skills, 'projects'=> $projects]);
     }
 
     public function edit(User $user)
@@ -54,5 +57,11 @@ class UserController extends Controller
             $user->skills()->attach($request->skill_id);
             
         return view('users.profile', array('user'=> Auth::user()));
+    }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+        return view('users.show')->with('user', $user);
     }
 }

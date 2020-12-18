@@ -24,7 +24,13 @@ Route::get('/', 'HomeController@index');
 
 Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
 Route::get('/users.edit',  'UserController@edit');
+Route::get('/users.show',  'UserController@show');
 Route::post('/profile',  'UserController@update');
+Route::post('/users.profile',  'ProjectsController@index');
+
+Route::get('/projects.create', 'ProjectsController@create');
+Route::post('/projects.store', 'ProjectsController@store');
+
 
 Route::get('/profile', 'UserController@profile')->middleware(['auth']);
 Auth::routes();
